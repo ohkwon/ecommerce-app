@@ -1,0 +1,23 @@
+<h1>All Products</h1>
+<table class="table table-hover">
+  <tr>
+    <th>Picture</th>
+    <th>Name</th>
+    <th>Price (in Dollars)</th>
+    <th>Developer</th>
+    <th>Description</th>
+    <th>Console</th>
+    <th>Rating</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <th><img src="<%= product.image %>" style="width:100px;"></th>
+      <th><%= product.name %></th>
+      <th><%= product.price %></th>
+      <th><%= product.developer %></th>
+      <th><%= product.description %></th>
+      <th><%= product.console %></th>
+      <th><%= product.rating %></th>
+    </tr>
+  <% end %>
+</table>
