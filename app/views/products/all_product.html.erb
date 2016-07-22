@@ -3,7 +3,7 @@
   <tr>
     <th>Picture</th>
     <th>Name</th>
-    <th>Price (in Dollars)</th>
+    <th>Price</th>
     <th>Developer</th>
     <th>Description</th>
     <th>Console</th>
@@ -11,9 +11,9 @@
   </tr>
   <% @products.each do |product| %>
     <tr>
-      <th><img src="<%= product.image %>" style="width:100px;"></th>
+      <th><img class="img_responsive" src="<%= product.image %>" style="width:100px;"></th>
       <th><%= product.name %></th>
-      <th><%= product.price %></th>
+      <th>$<%= product.price %></th>
       <th><%= product.developer %></th>
       <th><%= product.description %></th>
       <th><%= product.console %></th>
