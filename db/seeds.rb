@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+product = Product.new(name: "Star Wars: Battlefront", price: 59.99, developer: "EA DICE", image: "https://media.starwars.ea.com/content/starwars-ea-com/en_US/starwars/battlefront/_jcr_content/ogimage.img.jpeg", description: "Wars Battlefront is an action shooter video game developed by EA DICE, with additional work from Criterion Games.", console: "Playstation 4, Xbox One, PC", rating: 3.0)
+product.save
