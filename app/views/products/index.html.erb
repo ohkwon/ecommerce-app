@@ -1,4 +1,4 @@
-<h1>Index</h1>
+<h1>Home</h1>
 <table class="table table-hover">
   <tr>
     <th>Picture</th>
@@ -12,7 +12,7 @@
   <% @products.each do |product| %>
     <tr>
       <th><img class="img_responsive" src="<%= product.image %>" style="width:100px;"></th>
-      <th><%= product.name %></th>
+      <th><a href="http://localhost:3000/products/<%= product.id %>"><%= product.name %></a></th>
       <th>$<%= product.price %></th>
       <th><%= product.developer %></th>
       <th><%= product.description %></th>
