@@ -12,7 +12,7 @@
   <% @products.each do |product| %>
     <tr>
       <td><img class="img_responsive" src="<%= product.image %>" style="width:100px;"></td>
-      <td><a href="/products/<%= product.id %>"><%= product.name %></a></td>
+      <td><strong><a href="/products/<%= product.id %>"><%= product.name %></a></strong></td>
       <td>$<%= product.price %></td>
       <td><%= product.developer %></td>
       <td><%= product.description %></td>

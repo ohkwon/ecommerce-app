@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
     rating = params[:rating]
     product = Product.new({name: name, price: price, image: image, developer: developer, description: description, console: console, rating: rating})
     product.save
+    flash[:success] = "Product created!"
     redirect_to "/products/#{product.id}"
   end
 
@@ -43,6 +44,7 @@ class ProductsController < ApplicationController
     product = Product.find_by(id: @id)
     product.assign_attributes({name: name, price: price, image: image, developer: developer, description: description, console: console, rating: rating})
     product.save
+    flash[:success] = "Product updated!"
     redirect_to "/products/#{product.id}"
   end
 
@@ -50,6 +52,7 @@ class ProductsController < ApplicationController
     @id = params[:id]
     product = Product.find_by(id: @id)
     product.destroy
+    flash[:warning] = "Product destroyed!"
     redirect_to "/products"
   end
 
