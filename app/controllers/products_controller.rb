@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    @products = Product.all.sort_by{ |product| product.name}
   end
 
   def show
@@ -23,10 +23,12 @@ class ProductsController < ApplicationController
     rating = params[:rating]
     product = Product.new({name: name, price: price, image: image, developer: developer, description: description, console: console, rating: rating})
     product.save
+    redirect_to "/products/#{product.id}"
   end
 
   def edit
     @id = params[:id]
+    @product = Product.find_by(id: @id )
   end
 
   def update
@@ -41,6 +43,14 @@ class ProductsController < ApplicationController
     product = Product.find_by(id: @id)
     product.assign_attributes({name: name, price: price, image: image, developer: developer, description: description, console: console, rating: rating})
     product.save
+    redirect_to "/products/#{product.id}"
+  end
+
+  def destroy
+    @id = params[:id]
+    product = Product.find_by(id: @id)
+    product.destroy
+    redirect_to "/products"
   end
 
 end
