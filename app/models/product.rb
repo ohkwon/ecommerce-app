@@ -8,4 +8,11 @@ class Product < ApplicationRecord
     end
   end
 
+  def tax
+    (price.to_f * 0.09).round(2)
+  end
+
+  def total
+    (price.to_f * 1.09).round(2)
+  end
 end

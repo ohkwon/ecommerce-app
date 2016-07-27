@@ -6,6 +6,10 @@
   color: black;
 }
 
+.red-text {
+  color: red;
+}
+
 .border-style {
   border-style: inset;
   height: 300px;
