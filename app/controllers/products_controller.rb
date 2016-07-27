@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def show
     @id = params[:id]
     @product = Product.find_by(id: @id )
+    flash[:success] = @product.sale_message
   end
 
   def new
