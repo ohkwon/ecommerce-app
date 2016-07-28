@@ -1,19 +1,25 @@
-<h2><%= @product.name %></h2>
-<ul>
-  <li><img class="img_responsive" src="<%= @product.image %>" style="width:100px;"></li>
-  <% if @product.price.to_f < 2.0 %>
-    <li class="red-text">Price: $<%= @product.price %></li>
-  <% else %>
-    <li>Price: $<%= @product.price %></li>
-  <% end %>
-  <ul>
-    <li>Estimated Tax: $<%= @product.tax %></li>
-    <li>Total with Tax: $<%= @product.total %></li>
-  </ul>
-  <li>Developer: <%= @product.developer %></li>
-  <li>Description: <%= @product.description %></li>
-  <li>Consoles: <%= @product.console %></li>
-  <li>Rating: <%= @product.rating %></li>
-</ul>
+<div class="container show-container">
+  <div class="container show-border-style">
+    <div class="show-border-style-head">
+      <h2><%= @product.name %></h2>
+      <p><img class="img_responsive" src="<%= @product.image %>" style="width:150px;"></p>
+    </div>
+    <ul>
+      <% if @product.price.to_f < 2.0 %>
+        <li class="red-text">Price: $<%= @product.price %></li>
+      <% else %>
+        <li>Price: $<%= @product.price %></li>
+      <% end %>
+      <ul>
+        <li>Estimated Tax: $<%= @product.tax %></li>
+        <li>Total with Tax: $<%= @product.total %></li>
+      </ul>
+      <li>Developer: <%= @product.developer %></li>
+      <li>Description: <%= @product.description %></li>
+      <li>Consoles: <%= @product.console %></li>
+      <li>Rating: <%= @product.rating %></li>
+    </ul>
+  </div>
+</div>
 
 <h4><a href="http://localhost:3000/products/<%="#{@id}"%>/edit">Update Product</a></h3>

@@ -1,11 +1,13 @@
 <h1>Home</h1>
 <div class="row">
   <% @products.each do |product| %>
-    <div class="col-md-3 border-style">
+    <div class="col-md-3 index-item-out">
       <a href="/products/<%= product.id %>" class="black-text">
-        <strong><%= product.name %></strong>
-        <p><img class="img_responsive" src="<%= product.image %>" style="width:150px;"></p>
-        <p>$<%= product.price %></p>
+        <div class="border-style">
+            <strong><%= product.name %></strong>
+            <p><img class="img_responsive" src="<%= product.image %>" style="width:150px;max-height:190px"></p>
+            <p>Price <strong>$<%= product.price %></strong></p>
+        </div>
       </a>
     </div>
   <% end %>

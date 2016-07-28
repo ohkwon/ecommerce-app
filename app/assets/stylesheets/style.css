@@ -11,8 +11,27 @@
 }
 
 .border-style {
-  border-style: inset;
   height: 300px;
+  padding: 10px;
+  text-align: center;
+  border: 3px inset grey;
+}
+
+.show-border-style {
+  border: 3px inset grey;
+  padding: 10px;
+}
+
+.show-container {
+  padding: 10px;
+}
+
+.show-border-style-head {
+  text-align: center;
+}
+
+.index-item-out{
+  padding: 10px;
 }
 
 .nyan {
@@ -23,6 +42,8 @@
 .respectable {
   background-image: url("stars_background.jpg");
   background-repeat: repeat;
+  font-family: 'Poiret One', cursive;
+  font-size: 190%;
 }
 
 .navbar-default {
