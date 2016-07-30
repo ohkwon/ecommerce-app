@@ -37,6 +37,8 @@
 .nyan {
   background-image: url("nyan.gif");
   background-repeat: repeat;
+  font-family: 'Poiret One', cursive;
+  font-size: 190%;
 }
 
 .respectable {

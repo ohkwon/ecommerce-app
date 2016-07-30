@@ -5,7 +5,7 @@
       <p><img class="img_responsive" src="<%= @product.image %>" style="width:150px;"></p>
     </div>
     <ul>
-      <% if @product.price.to_f < 2.0 %>
+      <% if @product.price < 2.0 %>
         <li class="red-text">Price: $<%= @product.price %></li>
       <% else %>
         <li>Price: $<%= @product.price %></li>

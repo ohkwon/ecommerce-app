@@ -32,6 +32,9 @@
       <div class="form-group">
         <%= label_tag :rating %>
         <%= text_field_tag :rating, @product.rating, class: "form-control"%>
+      <div class="form-group">
+        <%= label_tag :inventory %>
+        <%= text_field_tag :inventory, @product.inventory, class: "form-control"%>
       </div>
       <div>
         <%= submit_tag "Update Product" %>
