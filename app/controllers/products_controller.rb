@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
   def show
     @id = params[:id]
     @product = Product.find_by(id: @id )
+    @image_cover = @product.images.find_by(name: "Cover")
+    # @image_cover = Image.where("product_id LIKE ?", @id).find_by(name: "Cover")
     flash.now[:success] = @product.sale_message
   end
 

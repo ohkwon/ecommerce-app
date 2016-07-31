@@ -2,7 +2,7 @@
   <div class="container show-border-style">
     <div class="show-border-style-head">
       <h2><%= @product.name %></h2>
-      <p><img class="img_responsive" src="<%= @product.image %>" style="width:150px;"></p>
+      <p><img class="img_responsive" src="<%= @image_cover.url %>" style="width:150px;"></p>
     </div>
     <ul>
       <% if @product.price < 2.0 %>
