@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
     sort_attribute = params[:sort_attribute]
     if sort_attribute
       @products = Product.order(sort_attribute)
+    elsif params[:search]
+      @products = Product.all.where("name ILIKE ?", "%#{params[:search]}%")
     else
       @products = Product.all.sort_by{ |product| product.name}
     end
@@ -63,5 +65,6 @@ class ProductsController < ApplicationController
     flash[:warning] = "Product destroyed!"
     redirect_to "/products"
   end
+
 
 end
