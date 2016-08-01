@@ -18,6 +18,10 @@
         <%= text_field_tag :image, "", class: "form-control"%>
       </div>
       <div class="form-group">
+        <%= label_tag :image_name %>
+        <%= text_field_tag :image_name, "", class: "form-control"%>
+      </div>
+      <div class="form-group">
         <%= label_tag :developer %>
         <%= text_field_tag :developer, "", class: "form-control"%>
       </div>
@@ -36,6 +40,9 @@
       <div class="form-group">
         <%= label_tag :inventory %>
         <%= text_field_tag :inventory, "", class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
       </div>
       <div>
         <%= submit_tag "Create Product" %>
