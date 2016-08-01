@@ -19,6 +19,11 @@
       <li>Supplier: <%= @product.supplier.name %></li>
       <li>Consoles: <%= @product.console %></li>
       <li>Rating: <%= @product.rating %></li>
+      <li>Screenshots: 
+        <% @screenshots.each do |screenshot| %>
+          <p><a href="<%= screenshot.url unless screenshot.nil? %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:400px"></a></p>
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>
