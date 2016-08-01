@@ -56,15 +56,21 @@ class ProductsController < ApplicationController
     @id = params[:id]
     name = params[:name]
     price = params[:price]
-    image = params[:image]
     developer = params[:developer]
     description = params[:description]
     console = params[:console]
     rating = params[:rating]
     inventory = params[:inventory]
     product = Product.find_by(id: @id)
-    product.assign_attributes({name: name, price: price, image: image, developer: developer, description: description, console: console, rating: rating, inventory: inventory})
+    product.assign_attributes({name: name, price: price, developer: developer, description: description, console: console, rating: rating, inventory: inventory})
     product.save
+
+    image = params[:image]
+    image_name = params[:image_name]
+    if product.save
+      image_new = image.new({name: image_name, url: image, product_id: product.id.to_i})
+      image_new.save
+    end
     flash[:success] = "Product updated!"
     redirect_to "/products/#{product.id}"
   end
