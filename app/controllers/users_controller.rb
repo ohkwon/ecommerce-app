@@ -12,7 +12,8 @@ class UsersController < ApplicationController
       password_confirmation: params[:password_confirmation]
       )
     if user.save
-      flash[:success] = "Account Created!"
+      session[:user_id] = user.id
+      flash[:success] = "You created your account #{params[:name]}!"
       redirect_to "/"
     else
       flash[:danger] = "Invalid Account Name, Email, or Password"
