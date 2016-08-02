@@ -1,8 +1,11 @@
 class SessionsController < ApplicationController
 
   def new
-
+    if session[:user_id]
+      redirect_to "/"
+    end
   end
+
 
   def create
     user = User.find_by(email: params[:email])
@@ -17,9 +20,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "You have successfully logged out!"
-    redirect_to "/login"
+    if session[:user_id]
+      session[:user_id] = nil
+      flash[:success] = "You have successfully logged out!"
+      redirect_to "/login"
+    else
+      redirect_to "/login"
+    end
   end
 
 end
