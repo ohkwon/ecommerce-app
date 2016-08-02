@@ -58,6 +58,7 @@
           <% end %>
           <ul class="nav navbar-nav navbar-right">
             <% if session[:user_id] %>
+              <li><a href="/accounts">Account Info</a></li>
               <li><a href="/logout">Logout</a></li>
             <% else %>
               <li><a href="/login">Login</a></li>
