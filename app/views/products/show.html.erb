@@ -29,4 +29,4 @@
 </div>
 
 <h4><a href="/products/<%="#{@id}"%>/edit">Update Product</a></h4>
-<h4><a href="/images/new?product_id=#{params[:id]}">Add Image</a></h4>
+<h4><a href="/images/new?product_id=<%= @product.id %>">Add Image</a></h4>

@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   patch '/products/:id', to: 'products#update'
   delete '/products/:id', to: 'products#destroy'
 
-  # get '/images/new', to: 'images#new'
-  # post '/images', to: 'images#create'
-  # get '/images', to: 'images#destroy'
+  get '/images/new', to: 'images#new'
+  post '/images', to: 'images#create'
+  delete '/images/:id', to: 'images#destroy'
 
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'

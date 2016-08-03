@@ -57,7 +57,7 @@
             </div>
           <% end %>
           <ul class="nav navbar-nav navbar-right">
-            <% if session[:user_id] %>
+            <% if current_user %>
               <li><a href="/accounts">Account Info</a></li>
               <li><a href="/logout">Logout</a></li>
             <% else %>
