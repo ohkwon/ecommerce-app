@@ -35,12 +35,12 @@ class ProductsController < ApplicationController
     product = Product.new({name: name, price: price, developer: developer, description: description, console: console, rating: rating, inventory: inventory})
     product.save
 
-    image = params[:image]
-    image_name = params[:image_name]
-    if product.save
-      image_new = image.new({name: image_name, url: image, product_id: product.id.to_i})
-      image_new.save
-    end
+    # image = params[:image]
+    # image_name = params[:image_name]
+    # if product.save
+    #   image_new = image.new({name: image_name, url: image, product_id: product.id.to_i})
+    #   image_new.save
+    # end
 
     #still has rollback issue
     flash[:success] = "Product created!"
