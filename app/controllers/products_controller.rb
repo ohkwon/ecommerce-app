@@ -32,7 +32,14 @@ class ProductsController < ApplicationController
     rating = params[:rating]
     inventory = params[:inventory]
 
-    product = Product.new({name: name, price: price, developer: developer, description: description, console: console, rating: rating, inventory: inventory})
+    product = Product.new({
+      name: name,
+      price: price,
+      developer: developer,
+      description: description,
+      console: console,
+      rating: rating,
+      inventory: inventory})
     product.save
 
     # image = params[:image]
