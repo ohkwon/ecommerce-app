@@ -35,6 +35,7 @@
           <a href="<%= screenshot.url unless screenshot.nil? %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:200px"></a>
         <% end %>
       </div>
+      <p></p>
     </div>
     <div class="row">
 
@@ -56,8 +57,12 @@
           <% end %>
         </div>
       </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-11">
+        <h4><a class="btn btn-primary" href="/products/<%="#{@id}"%>/edit" role="button">Update Product</a></h4>
+        <h4><a class="btn btn-primary" href="/images/new?product_id=<%= @product.id %>" role="button">Add Image</a></h4>
+      </div>
     </div>
   </div>
-
-<h4><a href="/products/<%="#{@id}"%>/edit">Update Product</a></h4>
-<h4><a href="/images/new?product_id=<%= @product.id %>">Add Image</a></h4>
+</div>

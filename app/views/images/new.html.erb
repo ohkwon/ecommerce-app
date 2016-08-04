@@ -14,8 +14,7 @@
         <%= text_field_tag :url, "", class: "form-control"%>
       </div>
       <div class="form-group">
-        <%= label_tag :product_id %>
-        <%= text_field_tag :product_id, "#{params[:product_id]}", class: "form-control"%>
+        <%= hidden_field_tag :product_id, "#{params[:product_id]}"%>
       </div>
       <div>
         <%= submit_tag "Add Image" %>
