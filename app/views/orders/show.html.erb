@@ -1,14 +1,20 @@
 <div class="container show-container">
   <div class="container show-border-style">
-    <div class="show-border-style-head">
-      <h2>Your Order!</h2>
+    <div class="container col-md-8">
+      <div class="show-border-style-head">
+        <h2>Your Order!</h2>
+      </div>
+      <ul>
+        <li>User email: <%= @user.email %></li>
+        <li>Product Name: <%= @product.name %></li>
+        <li>Quantity: <%= @order.quantity %></li>
+        <li>Subtotal: $<%= @order.subtotal %></li>
+        <li>Tax: $<%= @order.tax %></li> <!--why isn't it showing the extra 0?-->
+        <li>Total: $<%= @order.total %></li>
+      </ul>
     </div>
-    <ul>
-      <li>Product Name: <%= Product.find_by(id: @order.product_id).name %></li>
-      <li>Quantity: <%= @order.quantity %></li>
-      <li>Subtotal: $<%= @order.subtotal %></li>
-      <li>Tax: $<%= @order.tax %></li> <!--why isn't it showing the extra 0?-->
-      <li>Total: $<%= @order.total %></li>
-    </ul>
+    <div class="container col-md-4">
+      <p><img src="<%= @cover.url %>"></p>
+    </div>
   </div>
 </div>

@@ -7,8 +7,8 @@ class OrdersController < ApplicationController
   def create
 
     product = Product.find_by(id: params[:product][:id])
-    subtotal = product.price * params[:quantity]
-    tax = subtotal * 1.09
+    subtotal = product.price * params[:quantity].to_i
+    tax = subtotal * 0.09
     total = subtotal + tax
 
     order = Order.new(
@@ -31,6 +31,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
+    @product = Product.find_by(id: @order.product_id)
+    @user = User.find_by(id: @order.user_id)
+    @cover = Image.where(product_id: @product.id).find_by(name: "Cover")
   end
 
 end
