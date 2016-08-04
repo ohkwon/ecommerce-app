@@ -1,0 +1,20 @@
+<!-- <div class="row">
+
+  <div class="col-md-3"></div>
+
+  <div class="col-md-6">
+    <h1>Create an Order</h1>
+    <%= form_tag '/orders', method: :post do %>
+      <div class="form-group">
+        <%= collection_select :product, :product_id, Product.all, :id, :name %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :quantity %>
+        <%= text_field_tag :quantity, "", class: "form-control"%>
+      </div>
+      <div>
+        <%= submit_tag "Create Product" %>
+      </div>
+    <% end %>
+  </div>
+</div> -->

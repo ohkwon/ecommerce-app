@@ -4,6 +4,8 @@ class Product < ApplicationRecord
 
   has_many :images
 
+  has_many :orders
+
   def sale_message
     if price < 2
       return "Discount item!"

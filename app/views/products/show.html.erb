@@ -25,8 +25,28 @@
         <% end %>
       </li>
     </ul>
+    <div class="row">
+
+      <div class="col-md-3"></div>
+
+        <div class="col-md-6">
+          <h1>Create an Order</h1>
+          <%= form_tag '/orders', method: :post do %>
+            <div class="form-group">
+              <%= collection_select :product, :id, Product.all, :id, :name %>
+            </div>
+            <div class="form-group">
+              <%= label_tag :quantity %>
+              <%= text_field_tag :quantity, "", class: "form-control"%>
+            </div>
+            <div>
+              <%= submit_tag "Buy now!" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 <h4><a href="/products/<%="#{@id}"%>/edit">Update Product</a></h4>
 <h4><a href="/images/new?product_id=<%= @product.id %>">Add Image</a></h4>
