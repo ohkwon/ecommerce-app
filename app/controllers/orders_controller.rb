@@ -36,4 +36,13 @@ class OrdersController < ApplicationController
     @cover = Image.where(product_id: @product.id).find_by(name: "Cover")
   end
 
+  def index
+    if current_user
+      @orders = Order.where(user_id: current_user.id)
+    else
+      flash[:warning] = "Please log in to view your orders"
+      redirect_to "/"
+    end
+  end
+
 end
