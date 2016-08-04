@@ -16,10 +16,10 @@
         <td></td>
       <% end %>
       <td><%= Product.find_by(id: order.product_id).name %></td>
-      <td>$<%= order.quantity %></td>
-      <td><%= order.subtotal %></td>
-      <td><%= order.tax %></td>
-      <td><%= order.total %></td>
+      <td><%= order.quantity %></td>
+      <td><%= number_to_currency(order.subtotal, :unit => "$") %></td>
+      <td><%= number_to_currency(order.tax, :unit => "$") %></td>
+      <td><%= number_to_currency(order.total, :unit => "$") %></td>
     </tr>
   <% end %>
 </table>

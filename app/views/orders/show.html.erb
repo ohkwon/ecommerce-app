@@ -8,9 +8,9 @@
         <li>User email: <%= @user.email %></li>
         <li>Product Name: <%= @product.name %></li>
         <li>Quantity: <%= @order.quantity %></li>
-        <li>Subtotal: $<%= @order.subtotal %></li>
-        <li>Tax: $<%= @order.tax %></li> <!--why isn't it showing the extra 0?-->
-        <li>Total: $<%= @order.total %></li>
+        <li>Subtotal: <%= number_to_currency(@order.subtotal, :unit => "$") %></li>
+        <li>Tax: <%= number_to_currency(@order.tax, :unit => "$") %></li>
+        <li>Total: <%= number_to_currency(@order.total, :unit => "$") %></li>
       </ul>
     </div>
     <div class="container col-md-5">

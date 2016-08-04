@@ -1,30 +1,41 @@
 <div class="container show-container">
   <div class="container show-border-style">
-    <div class="show-border-style-head">
-      <h2><%= @product.name %></h2>
-      <p><img class="img_responsive" src="<%= @image_cover.url %>" style="width:150px;"></p>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="show-border-style-head">
+          <h2><%= @product.name %></h2>
+          
+        </div>
+        <ul>
+          <% if @product.price < 2.0 %>
+            <li class="red-text">Price: <%= number_to_currency(@product.price, :unit => "$") %></li>
+          <% else %>
+            <li>Price: <%= number_to_currency(@product.price, :unit => "$") %></li>
+          <% end %>
+          <ul>
+            <li>Estimated Tax: <%= number_to_currency(@product.tax, :unit => "$") %></li>
+            <li>Total with Tax: <%= number_to_currency(@product.total, :unit => "$") %></li>
+          </ul>
+          <li>Developer: <%= @product.developer %></li>
+          <li>Description: <%= @product.description %></li>
+          <li>Supplier: <%= @product.supplier.name %></li>
+          <li>Consoles: <%= @product.console %></li>
+          <li>Rating: <%= @product.rating %></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <p><img class="img_responsive" src="<%= @image_cover.url %>" style="max-width:300px;max-height:350px"></p>
+      </div>
     </div>
-    <ul>
-      <% if @product.price < 2.0 %>
-        <li class="red-text">Price: $<%= @product.price %></li>
-      <% else %>
-        <li>Price: $<%= @product.price %></li>
-      <% end %>
-      <ul>
-        <li>Estimated Tax: $<%= @product.tax %></li>
-        <li>Total with Tax: $<%= @product.total %></li>
-      </ul>
-      <li>Developer: <%= @product.developer %></li>
-      <li>Description: <%= @product.description %></li>
-      <li>Supplier: <%= @product.supplier.name %></li>
-      <li>Consoles: <%= @product.console %></li>
-      <li>Rating: <%= @product.rating %></li>
-      <li>Screenshots: 
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <h3>Screenshots:</h3>
         <% @screenshots.each do |screenshot| %>
-          <p><a href="<%= screenshot.url unless screenshot.nil? %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:400px"></a></p>
+          <a href="<%= screenshot.url unless screenshot.nil? %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:200px"></a>
         <% end %>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div class="row">
 
       <div class="col-md-3"></div>
@@ -32,9 +43,6 @@
         <div class="col-md-6">
           <h1>Create an Order</h1>
           <%= form_tag '/orders', method: :post do %>
-<!--             <div class="form-group">
-              <%= collection_select :product, :id, Product.all, :id, :name %>
-            </div> -->
             <div class="form-group">
               <%= hidden_field_tag :product_id, "#{@product.id}"%>
             </div>
