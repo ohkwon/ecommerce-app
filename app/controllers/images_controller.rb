@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-
+    @images = Image.where(product_id: params[:id])
   end
 
 end
