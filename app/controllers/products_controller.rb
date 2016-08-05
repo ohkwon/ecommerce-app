@@ -40,6 +40,7 @@ class ProductsController < ApplicationController
       console: console,
       rating: rating,
       inventory: inventory})
+    
     product.save
 
     # image = params[:image]
