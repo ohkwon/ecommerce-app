@@ -1,0 +1,2 @@
+class ProductConsole < ApplicationRecord
+end
