@@ -19,7 +19,20 @@
           <li>Developer: <%= @product.developer %></li>
           <li>Description: <%= @product.description %></li>
           <li>Supplier: <%= @product.supplier.name %></li>
-          <li>Consoles: <%= @product.console %></li>
+          <li>Consoles: 
+            <% @product.consoles.each do |console| %>
+              <%= console.name + ", " %>
+            <% end %>
+            <p>
+              <%= form_tag "/products/#{@product.id}/consoles/new", method: :get do %>
+                <div class="form-group">
+                  <%= label_tag :number_of_consoles, "Number of Consoles" %>
+                  <%= text_field_tag :number_of_consoles, "", class: "form-control"%>
+                  <%= submit_tag "Add Consoles" %>
+                </div>
+              <% end %>
+            </p>
+          </li>
           <li>Rating: <%= @product.rating %></li>
         </ul>
       </div>

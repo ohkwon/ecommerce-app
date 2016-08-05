@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show'
 
+  get '/products/:id/consoles/new', to: 'consoles#new'
+  post '/consoles', to: 'consoles#create'
+
 end

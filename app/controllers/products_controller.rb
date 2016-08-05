@@ -5,9 +5,11 @@ class ProductsController < ApplicationController
     if sort_attribute
       @products = Product.order(sort_attribute)
     elsif params[:search]
-      @products = Product.all.where("name ILIKE ?", "%#{params[:search]}%")
+      @products = Product.all.where("name ILIKE ?", "%#{params[:search]}%").sort_by{ |product| product.name}
     elsif params[:category_id]
-      @products = Category.find_by(id: params[:category_id]).products
+      @products = Category.find_by(id: params[:category_id]).products.sort_by{ |product| product.name}
+    elsif params[:console_id]
+      @products = Console.find_by(id: params[:console_id]).products.sort_by{ |product| product.name}
     else
       @products = Product.all.sort_by{ |product| product.name}
     end
@@ -33,7 +35,6 @@ class ProductsController < ApplicationController
       price: params[:price],
       developer: params[:developer],
       description: params[:description],
-      console: params[:console],
       rating: params[:rating],
       inventory: "true",
       supplier_id: params[:supplier][:supplier_id]
@@ -53,22 +54,22 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @id = params[:id]
-    @product = Product.find_by(id: @id )
+    @product = Product.find_by(id: params[:id])
   end
 
   def update
-    @id = params[:id]
-    name = params[:name]
-    price = params[:price]
-    developer = params[:developer]
-    description = params[:description]
-    console = params[:console]
-    rating = params[:rating]
-    inventory = params[:inventory]
-    product = Product.find_by(id: @id)
-    product.assign_attributes({name: name, price: price, developer: developer, description: description, console: console, rating: rating, inventory: inventory})
+    product = Product.find_by(id: params[:id])
+    product.assign_attributes({
+      name: params[:name],
+      price: params[:price],
+      developer: params[:developer],
+      description: params[:description],
+      console: params[:console],
+      rating: params[:rating],
+      inventory: params[:inventory]
+      })
     product.save
+    console
 
     # image = params[:image]
     # image_name = params[:image_name]
@@ -81,8 +82,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @id = params[:id]
-    product = Product.find_by(id: @id)
+    product = Product.find_by(id: params[:id])
     product.destroy
     flash[:warning] = "Product destroyed!"
     redirect_to "/products"
