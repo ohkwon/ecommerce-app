@@ -24,7 +24,9 @@
         </ul>
       </div>
       <div class="col-md-4">
+        <% if @image_cover %>
         <p><img class="img_responsive" src="<%= @image_cover.url %>" style="max-width:300px;max-height:350px"></p>
+        <% end %>
       </div>
     </div>
     <div class="row">
@@ -32,13 +34,13 @@
       <div class="col-md-10">
         <h3>Screenshots:</h3>
         <% @screenshots.each do |screenshot| %>
-          <a href="<%= screenshot.url unless screenshot.nil? %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:200px"></a>
+          <a href="/products/images/<%= @product.id %>"><img class="img_responsive" src="<%= screenshot.url unless screenshot.nil? %>" style="max-height:200px"></a>
         <% end %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" style='height:50px'>
-        <p><a href="/products/images/<%= @product.id %>">View Screenshots</a>
+        <!-- <p><a href="/products/images/<%= @product.id %>">View Screenshots</a> -->
       </div>
     </div>
     <div class="row">
@@ -66,7 +68,12 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-11">
-        <h4><a class="btn btn-primary" href="/products/<%="#{@id}"%>/edit" role="button">Update Product</a>  <a class="btn btn-primary" href="/images/new?product_id=<%= @product.id %>" role="button">Add Image</a></h4>
+        <h4>
+          <a class="btn btn-primary" href="/products/<%="#{@id}"%>/edit" role="button">Update Product</a>
+          <a class="btn btn-primary" role="button"><%= link_to 'Delete Product', "/products/#{@id}", method: :delete %></a>
+          <a class="btn btn-primary" href="/images/new?product_id=<%= @product.id %>" role="button">Add Image</a>
+<!--           <a class="btn btn-primary" role="button"><%= link_to 'Delete Image', "/images/#{@id}", method: :delete %></a> -->
+        </h4>
       </div>
     </div>
   </div>

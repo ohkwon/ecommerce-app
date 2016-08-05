@@ -6,6 +6,9 @@ class Product < ApplicationRecord
 
   has_many :orders
 
+  has_many :categorized_products
+  has_many :categories, through: :categorized_products
+
   def sale_message
     if price < 2
       return "Discount item!"

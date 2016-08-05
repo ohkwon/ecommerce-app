@@ -5,7 +5,7 @@
       <a href="/products/<%= product.id %>" class="black-text">
         <div class="border-style">
             <strong><%= product.name %></strong>
-            <p><img class="img_responsive" src="<%= product.images.find_by(name: "Cover").url %>" style="width:150px;max-height:190px"></p>
+            <p><img class="img_responsive" src="<%= product.images.find_by(name: "Cover").url if product.images.find_by(name: "Cover") %>" style="width:150px;max-height:190px"></p>
             <p>Price <strong>$<%= product.price %></strong></p>
         </div>
       </a>

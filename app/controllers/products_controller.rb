@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
       @products = Product.order(sort_attribute)
     elsif params[:search]
       @products = Product.all.where("name ILIKE ?", "%#{params[:search]}%")
+    elsif params[:category_id]
+      @products = Category.find_by(id: params[:category_id]).products
     else
       @products = Product.all.sort_by{ |product| product.name}
     end
@@ -14,9 +16,11 @@ class ProductsController < ApplicationController
   def show
     @id = params[:id]
     @product = Product.find_by(id: @id )
-    @image_cover = @product.images.find_by(name: "Cover")
-    @screenshots = @product.images.where.not(name: "Cover")
-    flash.now[:success] = @product.sale_message
+    if @product
+      @image_cover = @product.images.find_by(name: "Cover")
+      @screenshots = @product.images.where.not(name: "Cover")
+      flash.now[:success] = @product.sale_message
+    end
   end
 
   def new
@@ -32,7 +36,7 @@ class ProductsController < ApplicationController
       console: params[:console],
       rating: params[:rating],
       inventory: "true",
-      # supplier: params[:supplier][:supplier_id]
+      supplier_id: params[:supplier][:supplier_id]
       )
     product.save
     binding.pry
