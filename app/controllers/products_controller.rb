@@ -24,24 +24,18 @@ class ProductsController < ApplicationController
   end
 
   def create
-    name = params[:name]
-    price = params[:price]
-    developer = params[:developer]
-    description = params[:description]
-    console = params[:console]
-    rating = params[:rating]
-    inventory = params[:inventory]
-
-    product = Product.new({
-      name: name,
-      price: price,
-      developer: developer,
-      description: description,
-      console: console,
-      rating: rating,
-      inventory: inventory})
-    
+    product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      developer: params[:developer],
+      description: params[:description],
+      console: params[:console],
+      rating: params[:rating],
+      inventory: "true",
+      # supplier: params[:supplier][:supplier_id]
+      )
     product.save
+    binding.pry
 
     # image = params[:image]
     # image_name = params[:image_name]
