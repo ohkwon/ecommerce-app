@@ -16,12 +16,20 @@ class ImagesController < ApplicationController
     
   end
 
-  def destroy
+  def to_destroy
+    @images = Image.where(product_id: params[:product_id])
+  end
 
+  def destroy
+    image = Image.find_by(id: params[:id])
+    image.destroy
+    flash[:warning] = "Product destroyed!"
+    redirect_to "/products"
   end
 
   def show
-    @images = Image.where(product_id: params[:id])
+    @images = Image.where(product_id: params[:id]).where("name LIKE ?", "screenshot_%")
+    @counter = 0
   end
 
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/images/new', to: 'images#new'
   post '/images', to: 'images#create'
+  get '/images/to_destroy/:product_id', to: 'images#to_destroy'
   delete '/images/:id', to: 'images#destroy'
   get '/products/images/:id', to: 'images#show'
 

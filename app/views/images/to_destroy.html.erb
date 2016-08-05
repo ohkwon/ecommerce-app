@@ -1,0 +1,25 @@
+<div class="row">
+
+  <div class="col-md-3"></div>
+
+  <div class="col-md-6">
+    <h1>Delete Images</h1>
+    <%= form_tag '/images/:product_id', method: :delete do %>
+      <div class="form-group">
+        <%= collection_select :image, :image_id, Image.where(product_id: params[:product_id]), :id, :name %>
+        <%= submit_tag "Delete Image" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class='row' style='height:20px'></div>
+<div class="row">
+  <% @images.each do |image| %>
+    <div class="container col-md-3 image-delete-border">
+      <div>
+        <h3><%= image.name %></h3>
+        <p><img src="<%= image.url %>" style='max-width:225px;max-height:150px'></p>
+      </div>
+    </div>
+  <% end %>
+</div>

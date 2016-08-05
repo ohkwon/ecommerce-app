@@ -72,7 +72,8 @@
           <a class="btn btn-primary" href="/products/<%="#{@id}"%>/edit" role="button">Update Product</a>
           <a class="btn btn-primary" role="button"><%= link_to 'Delete Product', "/products/#{@id}", method: :delete %></a>
           <a class="btn btn-primary" href="/images/new?product_id=<%= @product.id %>" role="button">Add Image</a>
-<!--           <a class="btn btn-primary" role="button"><%= link_to 'Delete Image', "/images/#{@id}", method: :delete %></a> -->
+          <a class="btn btn-primary" href="/images/to_destroy/<%= @product.id %>" role="button">Delete Image</a>
+          <!-- <a class="btn btn-primary" role="button"><%= link_to 'Delete Image', "/images/#{@id}", method: :delete %></a> -->
         </h4>
       </div>
     </div>

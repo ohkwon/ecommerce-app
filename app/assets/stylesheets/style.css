@@ -29,6 +29,13 @@
   padding: 10px;
 }
 
+.image-delete-border{
+  border: 3px inset grey;
+  padding: 10px;
+  text-align: center;
+  height: 250px;
+}
+
 .show-container {
   padding: 10px;
 }

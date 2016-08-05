@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
       supplier_id: params[:supplier][:supplier_id]
       )
     product.save
-    binding.pry
 
     # image = params[:image]
     # image_name = params[:image_name]

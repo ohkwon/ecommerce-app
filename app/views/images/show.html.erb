@@ -1,19 +1,27 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+<!--     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li> -->
+    <% @images.length.times do %>
+      <% if @counter == 0 %>
+        <li data-target="#myCarousel" data-slide-to="#{@counter}" class="active"></li>
+        <% @counter += 1 %>
+      <% else %>
+        <li data-target="#myCarousel" data-slide-to="#{@counter}"></li>
+        <% @counter += 1 %>
+      <% end %>
+    <% end %>
   </ol>
-
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <% @images.each do |image| %>
-      <% if image.name == "Cover" %>
-      <div class="item active image-center">
-        <img src="<%= image.url %>" alt="Chania">
-      </div>
+      <% if image.name == "screenshot_1" %>
+        <div class="item active image-center">
+          <img src="<%= image.url %>" alt="Chania">
+        </div>
       <% else %>
         <div class="item image-center">
           <img src="<%= image.url %>" alt="Chania">
@@ -36,6 +44,6 @@
 <div class="row">
   <div class="col-md-5"></div>
   <div class="col-md-2">
-<!--     <a class="btn btn-primary" href="/products/<%="#{@id}"%>/edit" role="button">Update Product</a> -->
+    <a class="btn btn-primary" href="/products/<%= params[:id] %>" role="button">Back to Product Page</a>
   </div>
 </div>
