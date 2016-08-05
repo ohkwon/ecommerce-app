@@ -41,6 +41,12 @@
   padding: 10px;
 }
 
+.image-center {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
 .nyan {
   background-image: url("nyan.gif");
   background-repeat: repeat;

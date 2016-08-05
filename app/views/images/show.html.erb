@@ -11,11 +11,11 @@
   <div class="carousel-inner" role="listbox">
     <% @images.each do |image| %>
       <% if image.name == "Cover" %>
-      <div class="item active">
+      <div class="item active image-center">
         <img src="<%= image.url %>" alt="Chania">
       </div>
       <% else %>
-        <div class="item">
+        <div class="item image-center">
           <img src="<%= image.url %>" alt="Chania">
         </div>
       <% end %>
@@ -32,3 +32,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<div style="height:13px"></div>
