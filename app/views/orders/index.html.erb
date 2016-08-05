@@ -9,17 +9,19 @@
     <th>Total</th>
   </tr>
   <% @orders.each do |order| %>
-    <tr>
-      <% if Product.find_by(id: order.product_id).images.find_by(name: "Cover") %>
-        <td><img class="img_responsive" src="<%= Product.find_by(id: order.product_id).images.find_by(name: "Cover").url %>" style="width:100px;"></td>
-      <% else %>
-        <td></td>
-      <% end %>
-      <td><%= Product.find_by(id: order.product_id).name %></td>
-      <td><%= order.quantity %></td>
-      <td><%= number_to_currency(order.subtotal, :unit => "$") %></td>
-      <td><%= number_to_currency(order.tax, :unit => "$") %></td>
-      <td><%= number_to_currency(order.total, :unit => "$") %></td>
-    </tr>
+    <a href="/orders/<%= order.id %>">
+      <tr>
+        <% if Product.find_by(id: order.product_id).images.find_by(name: "Cover") %>
+          <td><img class="img_responsive" src="<%= Product.find_by(id: order.product_id).images.find_by(name: "Cover").url %>" style="width:100px;"></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= Product.find_by(id: order.product_id).name %></td>
+        <td><%= order.quantity %></td>
+        <td><%= number_to_currency(order.subtotal, :unit => "$") %></td>
+        <td><%= number_to_currency(order.tax, :unit => "$") %></td>
+        <td><%= number_to_currency(order.total, :unit => "$") %></td>
+      </tr>
+    </a>
   <% end %>
 </table>

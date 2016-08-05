@@ -20,4 +20,8 @@ class ImagesController < ApplicationController
 
   end
 
+  def show
+
+  end
+
 end

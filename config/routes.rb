@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/images/new', to: 'images#new'
   post '/images', to: 'images#create'
   delete '/images/:id', to: 'images#destroy'
+  get '/products/images/:id', to: 'images#show'
 
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
