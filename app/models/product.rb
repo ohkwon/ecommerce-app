@@ -9,6 +9,9 @@ class Product < ApplicationRecord
   has_many :categorized_products
   has_many :categories, through: :categorized_products
 
+  has_many :product_consoles
+  has_many :consoles, through: :product_consoles
+  
   def sale_message
     if price < 2
       return "Discount item!"
