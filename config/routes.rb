@@ -31,4 +31,9 @@ Rails.application.routes.draw do
   get '/products/:id/consoles/new', to: 'consoles#new'
   post '/consoles', to: 'consoles#create'
 
+  post '/cartedproducts', to: 'cartedproducts#create'
+  get '/cartedproducts/index', to: 'cartedproducts#index'
+  patch '/cartedproducts/:id', to: 'cartedproducts#update'
+  delete '/cartedproducts/:id', to: 'cartedproducts#destroy'
+
 end

@@ -61,8 +61,8 @@
       <div class="col-md-3"></div>
 
       <div class="col-md-6 order-border-style">
-        <h1>Create an Order</h1>
-        <%= form_tag '/orders', method: :post do %>
+        <h1>Add item to Cart</h1>
+        <%= form_tag '/cartedproducts', method: :post do %>
           <div class="form-group">
             <%= hidden_field_tag :product_id, "#{@product.id}"%>
           </div>
@@ -71,7 +71,7 @@
             <%= text_field_tag :quantity, "", class: "form-control"%>
           </div>
           <div>
-            <%= submit_tag "Buy now!" %>
+            <%= submit_tag "Add to Cart!" %>
           </div>
         <% end %>
       </div>

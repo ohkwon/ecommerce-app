@@ -11,6 +11,9 @@ class Product < ApplicationRecord
 
   has_many :product_consoles
   has_many :consoles, through: :product_consoles
+
+  has_many :cartedproducts
+  has_many :orders, through: :cartedproducts
   
   def sale_message
     if price < 2

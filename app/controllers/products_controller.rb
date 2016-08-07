@@ -40,7 +40,6 @@ class ProductsController < ApplicationController
       supplier_id: params[:supplier][:supplier_id]
       )
     product.save
-
     # image = params[:image]
     # image_name = params[:image_name]
     # if product.save
