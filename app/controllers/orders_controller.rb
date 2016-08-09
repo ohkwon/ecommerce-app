@@ -1,48 +1,46 @@
 class OrdersController < ApplicationController
 
-  def new
+  before_action :authenticate_user!
 
-  end
+  # def new
 
-  def create
+  # end
 
-    product = Product.find_by(id: params[:product_id])
-    subtotal = product.price * params[:quantity].to_i
-    tax = subtotal * 0.09
-    total = subtotal + tax
+  # def create
 
-    order = Order.new(
-      user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: subtotal,
-      tax: tax,
-      total: total
-      )
-    if order.save
-      flash[:success] = "You successfully made your order!"
-      redirect_to "/orders/#{order.id}"
-    else
-      flash[:danger] = "Error, please check if you are logged in!"
-      redirect_to "/"
-    end
-
-  end
+  # end
 
   def show
     @order = Order.find_by(id: params[:id])
-    @product = Product.find_by(id: @order.product_id)
-    @user = User.find_by(id: @order.user_id)
-    @cover = Image.where(product_id: @product.id).find_by(name: "Cover")
+    # @product = Product.find_by(id: @order.product_id)
+    # @user = User.find_by(id: @order.user_id)
+    # @cover = Image.where(product_id: @product.id).find_by(name: "Cover")
   end
 
   def index
-    if current_user
-      @orders = Order.where(user_id: current_user.id)
-    else
-      flash[:warning] = "Please log in to view your orders"
-      redirect_to "/"
+    @orders = Order.where(user_id: current_user.id)
+  end
+
+  def update
+
+    @order = current_user.orders.find_by(completed: false)
+
+    binding.pry
+
+    @order.completed = true
+
+    @carted_products = CartedProduct.where(order_id: @order.id)
+
+    @carted_products.each do |carted_product|
+      @order.subtotal += carted_product.quantity * carted_product.product.price
+      @order.tax += @order.subtotal * 0.09
+      @order.total += @order.subtotal * 1.09
+      @order.save
     end
+
+    flash[:success] = "Thank you for you patronage!"
+    redirect_to 'orders/#{@order.id}'
+
   end
 
 end

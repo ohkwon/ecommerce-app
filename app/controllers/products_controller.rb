@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :authenticate_admin!, except: [:index, :show, :search]
+
   def index
     sort_attribute = params[:sort_attribute]
     if sort_attribute
@@ -27,10 +29,13 @@ class ProductsController < ApplicationController
 
   def new
 
+    @product = Product.new
+
   end
 
   def create
-    product = Product.new(
+
+    @product = Product.new(
       name: params[:name],
       price: params[:price],
       developer: params[:developer],
@@ -39,17 +44,18 @@ class ProductsController < ApplicationController
       inventory: "true",
       supplier_id: params[:supplier][:supplier_id]
       )
-    product.save
-    # image = params[:image]
-    # image_name = params[:image_name]
-    # if product.save
-    #   image_new = image.new({name: image_name, url: image, product_id: product.id.to_i})
-    #   image_new.save
-    # end
+    if @product.save
 
-    #still has rollback issue
-    flash[:success] = "Product created!"
-    redirect_to "/products/#{product.id}"
+      flash[:success] = "Product created!"
+      redirect_to "/products/#{@product.id}"
+
+    else
+
+      flash[:danger] = "Error!"
+      render :new
+
+    end
+
   end
 
   def edit
@@ -57,35 +63,37 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find_by(id: params[:id])
-    product.assign_attributes({
+
+    @product = Product.find_by(id: params[:id])
+    @product.assign_attributes({
       name: params[:name],
       price: params[:price],
       developer: params[:developer],
       description: params[:description],
-      console: params[:console],
       rating: params[:rating],
       inventory: params[:inventory]
       })
-    product.save
-    console
+    if @product.save
 
-    # image = params[:image]
-    # image_name = params[:image_name]
-    # if product.save
-    #   image_new = image.new({name: image_name, url: image, product_id: product.id.to_i})
-    #   image_new.save
-    # end
-    flash[:success] = "Product updated!"
-    redirect_to "/products/#{product.id}"
+      flash[:success] = "Product updated!"
+      redirect_to "/products/#{@product.id}"
+
+    else
+
+      flash[:danger] = "Error!"
+      render :edit
+
+    end
+
   end
 
   def destroy
+
     product = Product.find_by(id: params[:id])
     product.destroy
     flash[:warning] = "Product destroyed!"
     redirect_to "/products"
-  end
 
+  end
 
 end

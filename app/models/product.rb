@@ -14,6 +14,9 @@ class Product < ApplicationRecord
 
   has_many :cartedproducts
   has_many :orders, through: :cartedproducts
+
+  validates :name, presence: true
+  validates :price, numericality: true
   
   def sale_message
     if price < 2

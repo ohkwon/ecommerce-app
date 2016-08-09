@@ -1,60 +1,57 @@
 class CartedproductsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
 
-    if current_user
-
-      if order = Order.find_by(completed: false)
-        add_cart = CartedProduct.new(
-          product_id: params[:product_id],
-          quantity: params[:quantity],
-          order_id: order.id
-          )
-        add_cart.save
-      else
-        order = Order.new(
-          user_id: current_user.id,
-          completed: false,
-          subtotal: 0,
-          tax: 0,
-          total: 0
-          )
-        order.save
-
-        add_cart = CartedProduct.new(
-          product_id: params[:product_id],
-          quantity: params[:quantity],
-          order_id: order.id
-          )
-        add_cart.save
-      end
-
-      flash[:success] = "Product successfully added to cart"
-      redirect_to '/cartedproducts/index'
-
+    if order = Order.find_by(completed: false)
+      add_cart = CartedProduct.new(
+        product_id: params[:product_id],
+        quantity: params[:quantity],
+        order_id: order.id
+        )
+      add_cart.save
     else
-      flash[:warning] = "Please log in to start an order!"
-      redirect_to '/login'
+      order = Order.new(
+        user_id: current_user.id,
+        completed: false,
+        subtotal: 0,
+        tax: 0,
+        total: 0
+        )
+      order.save
+
+      add_cart = CartedProduct.new(
+        product_id: params[:product_id],
+        quantity: params[:quantity],
+        order_id: order.id
+        )
+      add_cart.save
     end
+
+    flash[:success] = "Product successfully added to cart"
+    redirect_to '/cartedproducts/index'
 
   end
 
   def index
-    if current_user
-      if @order = Order.where(user_id: current_user.id).find_by(completed: false)
-        @carted_products = CartedProduct.where(order_id: @order.id)
-        @carted_products.each do |carted_product|
-          @order.subtotal = carted_product.quantity * carted_product.product.price
-          @order.tax = @order.subtotal * 0.09
-          @order.total = @order.subtotal * 1.09
-        end
-      else
-        flash[:warning] = "Your cart is empty, please add an item first!"
-        redirect_to '/'
+    
+    if @order = Order.where(user_id: current_user.id).find_by(completed: false)
+
+      @order.subtotal = 0
+      @order.tax = 0
+      @order.total = 0
+
+      @carted_products = CartedProduct.where(order_id: @order.id)
+      @carted_products.each do |carted_product|
+        @order.subtotal += carted_product.quantity * carted_product.product.price
+        @order.tax += @order.subtotal * 0.09
+        @order.total += @order.subtotal * 1.09
+        @order.save
       end
     else
-      flash[:warning] = "Please log in to view your cart!"
-      redirect_to '/login'
+      flash[:warning] = "Your cart is empty, please add an item first!"
+      redirect_to '/'
     end
 
   end

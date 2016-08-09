@@ -24,9 +24,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/orders', to: 'orders#index'
-  get '/orders/new', to: 'orders#new'
-  post '/orders', to: 'orders#create'
+  # get '/orders/new', to: 'orders#new'
+  # post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show'
+  patch '/orders/:id', to: 'orders#update'
 
   get '/products/:id/consoles/new', to: 'consoles#new'
   post '/consoles', to: 'consoles#create'
