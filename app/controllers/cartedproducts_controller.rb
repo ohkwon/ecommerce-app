@@ -4,7 +4,7 @@ class CartedproductsController < ApplicationController
 
   def create
 
-    if order = Order.find_by(completed: false)
+    if order = current_user.orders.find_by(completed: false)
       add_cart = CartedProduct.new(
         product_id: params[:product_id],
         quantity: params[:quantity],
@@ -29,6 +29,7 @@ class CartedproductsController < ApplicationController
       add_cart.save
     end
 
+    session[:cart_count] = nil
     flash[:success] = "Product successfully added to cart"
     redirect_to '/cartedproducts/index'
 
@@ -36,7 +37,7 @@ class CartedproductsController < ApplicationController
 
   def index
     
-    if @order = Order.where(user_id: current_user.id).find_by(completed: false)
+    if @order = current_user.orders.find_by(completed: false)
 
       @order.subtotal = 0
       @order.tax = 0
@@ -48,6 +49,7 @@ class CartedproductsController < ApplicationController
         @order.tax += @order.subtotal * 0.09
         @order.total += @order.subtotal * 1.09
         @order.save
+        
       end
     else
       flash[:warning] = "Your cart is empty, please add an item first!"

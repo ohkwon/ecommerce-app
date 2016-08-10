@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
       @order.save
     end
 
+    session[:cart_count] = nil
     flash[:success] = "Thank you for you patronage!"
     redirect_to 'orders/#{@order.id}'
 
