@@ -37,7 +37,7 @@ class CartedproductsController < ApplicationController
 
   def index
     
-    if @order = current_user.orders.find_by(completed: false)
+    if @order = current_user.orders.find_by(completed: false) && CartedProduct.where(order_id: current_user.orders.find_by(completed: false).id).any?
 
       @order.subtotal = 0
       @order.tax = 0
