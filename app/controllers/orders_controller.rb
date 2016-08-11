@@ -11,10 +11,22 @@ class OrdersController < ApplicationController
   # end
 
   def show
-    @order = Order.find_by(id: params[:id])
+    # @order = Order.find_by(id: params[:id])
     # @product = Product.find_by(id: @order.product_id)
     # @user = User.find_by(id: @order.user_id)
     # @cover = Image.where(product_id: @product.id).find_by(name: "Cover")
+
+    if @order = current_user.orders.find_by(completed: params[:id])
+      @carted_products = CartedProduct.where(order_id: @order.id)
+      @quantity = 0
+      @carted_products.each do |carted_product|
+        @quantity += carted_product.quantity
+      end
+    else
+      flash[:warning] = "Your cart is empty, please add an item first!"
+      redirect_to '/'
+    end
+
   end
 
   def index

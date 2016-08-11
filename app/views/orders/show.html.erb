@@ -25,11 +25,9 @@
     <th></th>
     <th>Product</th>
     <th>Quantity</th>
-    <th>Update Quantity</th>
-    <th>Price</th>
+    <th>Subtotal</th>
     <th>Tax</th>
-    <th>Item Total</th>
-    <th>Delete Item</th>
+    <th>Total</th>
   </tr>
   <% @carted_products.each do |carted_product| %>
     <tr>
@@ -38,34 +36,15 @@
       <td>
         <%= carted_product.quantity %>
       </td>
-      <td>
-        <%= form_tag "/cartedproducts/#{carted_product.id}", method: :patch do %>
-          <div class="form-group" style='max-width:50px'>
-            <%= hidden_field_tag :id, "#{carted_product.id}"%>
-            <%= hidden_field_tag :order_id, "#{carted_product.order_id}"%>
-            <%= text_field_tag :quantity, "", class: "form-control"%>
-            <%= submit_tag "Update!" %>
-          </div>
-        <% end %>
-      </td>
       <td><%= number_to_currency(carted_product.product.price*carted_product.quantity, unit: "$") %></td>
       <td><%= number_to_currency(carted_product.product.price*carted_product.quantity*0.09, unit: "$") %></td>
       <td><%= number_to_currency(carted_product.product.price*carted_product.quantity*1.09, unit: "$") %></td>
-      <td>
-        <%= form_tag "/cartedproducts/#{carted_product.id}", method: :delete do %>
-          <div class="form-group" style='max-width:30px'>
-            <%= hidden_field_tag :id, "#{carted_product.id}"%>
-            <%= submit_tag "Delete!" %>
-          </div>
-        <% end %>
-      </td>
     </tr>
   <% end %>
   <tr>
     <td><strong>Order Total</strong></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td><%= @quantity %></td>
     <td><%= number_to_currency(@order.subtotal, unit: "$") %></td>
     <td><%= number_to_currency(@order.tax, unit: "$") %></td>
     <td><%= number_to_currency(@order.total, unit: "$") %></td>
