@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :authenticate_admin!, except: [:index, :show, :search]
+  before_action :authenticate_admin!, except: [:index, :show]
 
   def index
     sort_attribute = params[:sort_attribute]

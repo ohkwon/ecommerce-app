@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
   </head>
 
-  <body class="respectable">
+  <body class="nyan">
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -101,5 +101,6 @@
     <div class="container white_cover">
       <%= yield %>
     </div>
+    <%= audio_tag("nyan_cat_smooth_jazz.mp3", autoplay: true, controls: false) %>
   </body>
 </html>
